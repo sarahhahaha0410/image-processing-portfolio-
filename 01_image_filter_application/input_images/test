@@ -1,0 +1,18 @@
+import cv2, numpy as np
+height, width = 500, 700
+img = np.zeros((height, width, 3), dtype=np.uint8)
+
+# Gradient background
+for i in range(height):
+    img[i, :, 0] = int(255 * i/height)  # Blue
+    img[i, :, 1] = int(255 * (height-i)/height)  # Green
+
+# Shapes
+cv2.rectangle(img, (100, 100), (300, 300), (0, 255, 255), 5)
+cv2.circle(img, (500, 250), 100, (255, 0, 255), -1)
+cv2.line(img, (50, 400), (650, 400), (255, 255, 0), 3)
+cv2.putText(img, 'EDGE DETECTION TEST', (150, 450), 
+            cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+
+cv2.imwrite('input_images/colorful_test.jpg', img)
+print('✅ Created colorful_test.jpg')
